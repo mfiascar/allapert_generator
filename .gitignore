@@ -1,0 +1,74 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.pyc
+
+# Editor backup files
+*~
+\#*\#
+
+# Common OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#### SIXTRACK REPO SPESIFIC ####
+
+#executables
+sixtrack/astuce
+sixtrack/dafor
+
+#build directories
+sixtrack/SixTrack_*/
+
+*.pdf
+
+#Extra input/output files
+test_case/*
+!test_case/log.out
+!test_case/dynksets.dat
+!test_case/input
+!test_case/output
+!test_case/SixTrack_4518_cernlib_coll_gfortran_O4
+!test_case/fort.2
+!test_case/fort.3
+!test_case/CollDB.alltclp-tcld.b1.new
+!test_case/CollPositions.alltclp-tcld.b1.dat
+
+#Extra input/output files
+test_case_crabs/*
+!test_case_crabs/input
+!test_case_crabs/output
+!test_case_crabs/SixTrack_4518_cernlib_coll_gfortran_O4
+!test_case_crabs/fort.2
+!test_case_crabs/fort.3
+!test_case_crabs/CollDB.alltclp-tcld.b1.new
+!test_case_crabs/CollPositions.alltclp-tcld.b1.dat
