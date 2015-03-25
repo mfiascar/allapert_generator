@@ -1,7 +1,7 @@
 import re
 
-with open('../madx_generator/allapert_twiss.b1', 'r') as infile:
-    with open('allapert_final.b1', 'w') as outfile:
+with open('allapert_old.b1', 'r') as infile:
+    with open('allapert_old_2.b1', 'w') as outfile:
         line = infile.readlines()
         for item in line:
             if item[0] == '@' or item[0] == '$' or item[0] == '*':
@@ -9,8 +9,8 @@ with open('../madx_generator/allapert_twiss.b1', 'r') as infile:
     outfile.close()
 infile.close()
 
-with open('../madx_generator/allapert_twiss.b1', 'r') as infile:
-    with open('allapert_final.b1', 'a') as outfile:
+with open('allapert_old.b1', 'r') as infile:
+    with open('allapert_old_2.b1', 'a') as outfile:
         for character in infile:
             columns = character.strip().split()
             if character[0] != '@' and character[0] != '$' and character[0] != '*':
@@ -27,8 +27,8 @@ with open('../madx_generator/allapert_twiss.b1', 'r') as infile:
     outfile.close()
 infile.close()
 
-with open('allapert_final.b1', 'r') as infile:
-    with open('plot_allapert.txt', 'w') as outfile:
+with open('allapert_old_2.b1', 'r') as infile:
+    with open('plot_allapert_old.txt', 'w') as outfile:
         for character in infile:
             columns = character.strip().split()
             if character[0] != '@' and character[0] != '$' and character[0] != '*':
