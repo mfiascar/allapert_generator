@@ -5,6 +5,14 @@ This repository contains the tools used to generate a new aperture file, as inpu
 * MAD-X file
 * Old allapert file processed by GetAperture
 * Plotting script (can be found in [__data_treatment__](https://github.com/KFubuki/allapert_generator/tree/master/data_treatment))
+* 
+1. First ordered list item
+2. Another item
+⋅⋅* Unordered sub-list. 
+1. Actual numbers don't matter, just that it's a number
+⋅⋅1. Ordered sub-list
+4. And another item.
+
 
 2. Execute the [__run.sh__](https://github.com/KFubuki/allapert_generator/blob/master/run.sh) script
 3. Check the results folder to see the plots
