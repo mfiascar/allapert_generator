@@ -8,7 +8,6 @@ option, warn, info;
 //-----------------------------------------
 system, "ln -fns /afs/cern.ch/eng/lhc/optics/V6.503 db5";                    // Nominal
 system, "ln -fns /afs/cern.ch/eng/lhc/optics/HLLHCV1.0 hl";                  // High Luminosity
-system, "ln -fns /afs/cern.ch/eng/lhc/optics/HLLHCV1.1 slhc";                // Newest version
 system, "ln -fns /afs/cern.ch/user/a/ansantam/public/toolkit tkit";          // Beam parameters
 system, "ln -fns /afs/cern.ch/user/a/ansantam/public/MADX/collimation coll"; // Collimation
 
@@ -18,7 +17,6 @@ system, "ln -fns /afs/cern.ch/user/a/ansantam/public/MADX/collimation coll"; // 
 call, file = "hl/toolkit/macro.madx";
 // on_disp = 1;  // parasitic dispersion
 mylhcbeam = 1;
-// mylhcbeam = 4; // For Beam 4, in the other sense
 
 //--------------
 // Verbose off
@@ -39,17 +37,13 @@ REAL CONST l.TCTVA = l.TCT;
 //--------------------------------------------
 // Load sequence files (position of elements)
 //--------------------------------------------
-// call, file = "db5/V6.5.seq";                 !+=+=+= fatal: negative drift between elements  atlaspipe5.r1:1 and mbas2.1r1:1, length -1.478670e+00
-// call, file = "slhc/hllhc_sequence.madx";     !+=+=+= fatal: unknown class type: mqy
-// call, file = "hllhc.seq"                     !+=+=+= fatal: c6t - no current sequence.
-// call, file = "hllhc_sequence2.madx"          !+=+=+= fatal: c6t - no current sequence.
-
 if (mylhcbeam>2){
   call,file="hl/hllhc_thinb4.seq";
 } else {
   call,file="hl/hllhc_thin.seq";
 };
 
+// call,file="hl/hllhc_sequence.madx"
 //--------------------
 // Load strength files
 //--------------------
@@ -60,8 +54,10 @@ call, file = "hl/opt_round_thin.madx";  // beta*=15 cm, round optics
 //-----------------------------
 call, file = "db5/aperture/aperture.b1.madx";
 call, file = "db5/aperture/aper_tol.b1.madx";
-call, file = "hl/aperture/aperture_upgrade_MS.madx";
-call, file = "hl/aperture/aperture_upgrade_IT.madx";
+call, file = "hl/aperture/aperture_upgrade_MS.madx" // TAN,D2,Q4,Q5 2010
+// call, file = "hl/aperture/aperture_upgrade_IT.madx"; //beam screen aperture 2009, doesn't compile
+call, file = "hl/aperture/aperture_upgrade_octagon.madx"; 
+call, file = "hl/aperture/aperture_upgrade_rectellipse.madx"; 
 
 // Not updated -- !Check where we can get the info?
 //------------------------------------------------
@@ -88,7 +84,6 @@ on_disp := 1;
 // Load the beam parameters (to obtain sigmas as output)
 //------------------------------------------------------
 call, file = "tkit/Beam_7_TeV.madx";  // Important to call these files first, if not Beam.madx doesnt work
-// call, file = "tkit/Beam_450_GeV.madx";
 call, file = "tkit/Beam.madx";   
 
 //---------------------------------------------------------------------------------------------------
@@ -100,12 +95,14 @@ call, file = "tkit/Beam.madx";
 use, sequence = lhcb1;
 select, flag = twiss, clear;
 select, flag = twiss,
-column = name, s, l, x, y, aper_1, aper_2, aper_3, aper_4, alfx, alfy, px, py, sigxd, sigyd, betx, bety, sigx, ex, sigy, ey, dx, dpx, dy, dpy, wx, wy, T, PT, DELTAP, beta;
+  column = name, keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
 twiss, table = twiss, file = "twiss_ip1_b1.tfs";
 
-select, flag = aperture, clear;
-select, flag = aperture, column = keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
-aperture, file = "allapert_twiss.b1";
+exec,mk_irtwiss(1,b1)
+
+// select, flag = aperture, clear;
+// select, flag = aperture, column = keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
+// aperture, file = "allapert_twiss.b1";
 
 stop;
 
