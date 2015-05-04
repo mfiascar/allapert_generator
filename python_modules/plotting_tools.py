@@ -1,18 +1,27 @@
-# -------------------------------------------------
-# Series of very useful functions to help plotting
-# -------------------------------------------------
+# --------------------------------------------
+# Series of useful functions to help plotting
+# --------------------------------------------
 import re
 
-# Function to extract lines from a file
 def get_lines(infile):
+    """Extracts the lines of a data file. Used in the get_columns function."""
     for character in open(infile):
         columns = character.strip('\n').split()
-        if columns[0] == '#':
+        if columns[0] == '#' or columns[0] == '@' or columns[0] == '*' or columns[0] == '$' or columns[0] == '%':
             continue
         yield columns
 
-# Function to extract columns from a file
 def get_columns(infile, x, y):
+    """Extracts the columns of a data file using the get_lines function. 
+
+    The function arguments' are (in order): 
+    - File
+    - Number of the column corresponding to coordinate x
+    - Number of the column corresponding to coordinate y
+
+    Example:
+    var_x, var_y = get_columns('LHCAperture_old.dat', 0, 2)
+    """
     var_x = []
     var_y = []
     my_data = get_lines(infile)
@@ -21,8 +30,15 @@ def get_columns(infile, x, y):
         var_y.append(float(column[y]))
     return var_x, var_y
 
-# Function to treat the data starting from IP1
 def get_ip1(x,y):
+    """Treats the x and y coordinates already extracted from the data in order to easily plot
+    around IP1 (i.e. convert s coordinate of 26900 m to -100 m).
+
+    The function arguments' are the variables x and y that you want to treat, respectively . 
+
+    Example:
+    var_x, var_y = get_ip1(var_x, var_y)
+    """
     zipped = zip(x, y)
     x_temp = []
     y_temp = []
@@ -40,38 +56,51 @@ def get_ip1(x,y):
         y.append(e2)
     return x,y
 
-# Function to plot different IR's with different characteristics
-def get_ir(ip, text_height, element_regex, ylim):
+def get_ir(ir, ylim):
+    """This function stores the information relevant to the plotting of a specific Interaction Region (IR), 
+    i.e. the position of the IR in the accelerator and the limit of the vertical coordinate.
+
+    The function arguments' are (in order):
+    - Number of the IR (from 1 to 8, both included)
+    - Limit in the vertical coordinate
+
+    Example:
+    position, ylim = get_ir(2, 0.6)
+    """
     t = (0, 3332.436584, 6664.7208, 9997.005016, 13329.28923, 16661.72582, 19994.1624, 23315.37898)
-    position = t[ip-1]
-    return position, text_height, element_regex, ylim
+    position = t[ir-1]
+    return position, ylim
 
-# Function to annotate the element's names
-def get_element(infile, regex, flag, column_name, column_position):
-    if flag==True:
-        name = []
-        position = []
-        with open(infile, 'r') as infile:
-            for character in infile:
-                columns = character.strip().split()
-                name.append(columns[column_name].strip('"'))
-                position.append(columns[column_position])
+def get_element(infile, column_name, column_position, regex, text_height):
+    """This function extracts the information relevant to the plotting of the accelerator's elements.
 
-        new_name = []
-        new_position = []
-        for expression in regex:
-            regex = re.compile(expression)
-            for e1, e2 in zip(name,position):
-                if regex.match(expression):
-                    new_name.append(e1)
-                    new_position.append(e2)
-        return new_name, new_position
+    The function arguments' are (in order):
+    - File 
+    - Number of the column corresponding to the name
+    - Number of the column corresponding to the position
+    - List of regular expressions defining the elements you want to plot (e.g. all that start with the 
+    letter 'V')
+    - The height at which the name of the element will appear in the plot
 
-    #     print '>> Element names were written for IP%s, coord. %s' %(ip, coord) 
-    # elif flag==False:
-    #     print '>> No element names were written for IP%s,coord. %s' %(ip, coord)
-    # else:
-    #     print '>> Enter "True" or "False" in the last argument of the function please!' 
+    Example:
+    name, pos, height = get_element('twiss_ip1_b1.tfs', 0, 3, ['VC+'], 0.6)
+    """
+    name = []
+    position = []
+    my_data = get_lines(infile)
+    for column in my_data:
+        name.append(column[column_name].strip('"'))
+        position.append(float(column[column_position]))
+
+    new_name = []
+    new_position = []
+    for expression in regex:
+        regex = re.compile(expression)
+        for e1, e2 in zip(name,position):
+            if regex.match(e1):
+                new_name.append(e1)
+                new_position.append(e2)
+    return new_name, new_position, text_height
 
 # Color options
 #--------------
@@ -83,4 +112,4 @@ def get_element(infile, regex, flag, column_name, column_position):
 # V   = '#A1AAA2'        # Vacuum elements
 # TC  = '#EE634C'        # Collimators
 # TAN = '#8C3C2F'        # TAN & TAS
-# spec='#9342AE'       # Spectrometers & compensators: MBAW, MBLW, MBWMD, MBXWH
+# spec= '#9342AE'       # Spectrometers & compensators: MBAW, MBLW, MBWMD, MBXWH
