@@ -41,8 +41,8 @@
 @ SYNCH_5          %le  0
 @ TITLE            %08s "no-title"
 @ ORIGIN           %22s "MAD-X 5.02.00 Linux 64"
-@ DATE             %08s "30/04/15"
-@ TIME             %08s "14.52.12"
+@ DATE             %08s "04/05/15"
+@ TIME             %08s "17.02.31"
 * NAME               S L LRAD ANGLE K1L K2L K3L HKICK VKICK KICK TILT BETX BETY ALFX ALFY DX DPX DY DPY MUX MUY X Y PX PY WX WY PHIX PHIY N1 DDX DDY DDPX DDPY KEYWORD            APER_1 APER_2 APER_3 APER_4 RTOL XTOL YTOL APERTYPE           
 $ %s                 %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %le %s                 %le %le %le %le %le %le %le %s                 
  "S.DS.L1.B1"        0 0 0 0 0 0 0 0 0 0 0 33.9955002926221 169.454379814672 0.54537470751091 -2.33811586233727 1.10021757975544 -0.0144170572371504 -9.78214995042875e-06 -3.12087875390052e-07 0 0 6.66549094774332e-12 -5.21790857090882e-06 1.37936494875327e-13 -7.29960214051044e-08 0 0 0 0 0 0 0 0 0 "MARKER"            9.999999 9.999999 9.999999 9.999999 0 0 0 "RECTELLIPSE"      

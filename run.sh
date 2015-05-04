@@ -33,6 +33,6 @@ mv LHCAperture.dat LHCAperture_new.dat
 
 # Plot the comparison
 echo '>> Plotting'
-python plot.py 
+python plot_allapert.py 
 
 echo '>> DONE!!'
