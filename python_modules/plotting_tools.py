@@ -102,14 +102,3 @@ def get_element(infile, column_name, column_position, regex, text_height):
                 new_position.append(e2)
     return new_name, new_position, text_height
 
-# Color options
-#--------------
-# D   = '#419AD9'        # Dipoles: MBX, MBXW, MBRC, MBRS, MBW, MBRB
-# Q1  = '#249A27'        # MQXA
-# Q2  = '#55E058'        # MQXB
-# M   = '#EEBE4C'        # Kickers & Correctors: MC, MK
-# B   = '#9342AE'        # Beam Instrumentation: B
-# V   = '#A1AAA2'        # Vacuum elements
-# TC  = '#EE634C'        # Collimators
-# TAN = '#8C3C2F'        # TAN & TAS
-# spec= '#9342AE'       # Spectrometers & compensators: MBAW, MBLW, MBWMD, MBXWH

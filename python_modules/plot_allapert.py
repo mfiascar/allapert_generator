@@ -62,12 +62,14 @@ def plot(file_1, file_2, coord, ip, flag): # Here, file_1 is thought as the outp
     # -------------------------------------
     regex_list = (['VC+', 'T'], ['VC+'], ['VC+'], ['VC+'], ['VC+', 'T'], ['VC+'], ['VC+'], ['VC+'])
 
-    name, pos, height = get_element('twiss_ip1_b1.tfs', 0, 3, regex_list[ip-1], y_limits[ip-1]-0.05)
+    name, pos, height = get_element('twiss_ip1_b1.tfs', 0, 3, regex_list[ip-1], y_limits[ip-1]-0.1)
 
     if flag == True:
     # ------------------
     # Plot the elements
     # ------------------
+        if ip == 1:
+            pos, name = get_ip1(pos, name)
         for s, n in zip(pos, name):
             plt.annotate(n, xy=(s, height), xytext=(s, height), name='Verdana', family='sans-serif', 
                          weight='light', va='bottom', ha='center', rotation=90, size=3)
@@ -97,3 +99,12 @@ def plot(file_1, file_2, coord, ip, flag): # Here, file_1 is thought as the outp
     plt.savefig('allapert_ip_' + ip + '_' + coord + '_new.png', dpi=DPI)
     plt.close()
 
+
+# -----------------
+# Use the function
+# -----------------
+for number in range(1,9):
+    plot('LHCAperture_old.dat', 'LHCAperture_new.dat', 'x', number, True)
+
+for number in range(1,9):
+    plot('LHCAperture_old.dat','LHCAperture_new.dat', 'y', number, True)
