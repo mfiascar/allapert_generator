@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{website}
+{LHC} {Co}llimation {P}roject website.
+\newblock
+  \url{https://lhc-collimation-project.web.cern.ch/lhc-collimation-project/BeamLossPattern.htm}.
+
+\bibitem{github}
+{G}it{H}ub repository.
+\newblock \url{https://github.com/KFubuki/allapert_generator}.
+
+\bibitem{mad_ap}
+{D}efining aperture in {MAD-X}.
+\newblock
+  \url{http://madx.web.cern.ch/madx/madX/doc/usrguide/Introduction/aperture.html}.
+
+\end{thebibliography}
