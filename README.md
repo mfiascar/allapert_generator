@@ -10,7 +10,7 @@ This repository contains the tools used to generate a new aperture file, as inpu
 - [__scripts__](https://github.com/KFubuki/allapert_generator/tree/master/scripts): contains the data treatment and plotting Python scripts.
 
 ## How it works
-[alt text](https://raw.githubusercontent.com/KFubuki/allapert_generator/master/flow.png)
+![alt text](https://raw.githubusercontent.com/KFubuki/allapert_generator/master/flow.png)
 
 __Remark 1__: if you don't have access to AFS, you won't be able to use the files needed to run the MAD-X script.
 
