@@ -1,62 +1,59 @@
-read -r -p '>> ATTENTION! The contents of the "data" folder will be wiped clean. Do you want to continue (y/n)? ' -n 1 -r
+echo ''
+read -r -p '>> ATTENTION! The contents of the "data/results" folder will be wiped clean. Do you want to continue (y/n)? ' -n 1 -r
 if [[ $REPLY =~ ^[Nn]$ ]]
 then
     exit 0
 fi
 
-echo ''
-
-rm data/*
-
-cp scripts/*.madx data
-cp scripts/edit_allapert.py data
-cd data
-echo '>> This are the files for your simulation'
-ls -l
-
-cd data
+cd data/results/madx
+rm *
+cp ../../../scripts/*.madx .
 madx < *.madx
-python edit_allapert.py
+rm *.madx
 
-ls -lt
+cd ../edit_twiss
+rm *
+cp ../madx/twiss_ip1_b1.tfs .
+cp ../../../scripts/edit_twiss.py .
+python edit_twiss.py
+rm *.py
+rm twiss_ip1_b1.tfs
 
-ln -s ../bin/GetAperture
+cd ../GetAperture
+cp ../edit_twiss/allapert_final.b1 .
+ln -s ../../../bin/GetAperture
 ./GetAperture allapert_final.b1
-
 mv LHCAperture.dat LHCAperture_new.dat
-
-ls -lt
+rm allapert_final.b1
+cd ../../../
 
 echo ''
-read -r -p '>> Do you want to compare LHCAperture.dat with another file (y/n)? ' -n 1 -r
+read -r -p '>> Do you want to compare the latest LHCAperture.dat file generated with another file (y/n)? ' -n 1 -r
 if [[ $REPLY =~ ^[Nn]$ ]]
 then
+    echo '>> The simulations end here. Exiting...'
     exit 0
 fi
 
 echo ''
-cd ../allapert_files
+cd data/input/GetAperture
 ls -l
-cd ../data
 
 echo ''
 read -r -p '>> Which one? > ' file
 
-cp ../allapert_files/$file .
-
+cp $file ../../results/GetAperture
+cd ../../results/GetAperture
 ./GetAperture $file
-
-ls -l
-
 mv LHCAperture.dat LHCAperture_old.dat
+rm $file
 
-cp LHC* ../scripts
-cp twiss_ip1_b1.tfs ../scripts
-cd ../scripts
+cp LHC*  ../../../scripts
+cp ../madx/twiss_ip1_b1.tfs  ../../../scripts
+cd  ../../../scripts
 python plot_allapert.py
 mv *.png ../fig
 rm LHC*
 rm twiss_ip1_b1.tfs
-rm *.png
 
 echo '>> DONE!!'
