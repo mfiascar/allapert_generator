@@ -6,9 +6,7 @@ fi
 
 echo ''
 
-if [ -d data/* ]; then
-    rm data/*
-fi
+rm data/*
 
 cp scripts/*.madx data
 cp scripts/edit_allapert.py data
@@ -40,6 +38,8 @@ echo ''
 cd ../allapert_files
 ls -l
 cd ../data
+
+echo ''
 read -r -p '>> Which one? > ' file
 
 cp ../allapert_files/$file .
@@ -51,8 +51,12 @@ ls -l
 mv LHCAperture.dat LHCAperture_old.dat
 
 cp LHC* ../scripts
+cp twiss_ip1_b1.tfs ../scripts
 cd ../scripts
 python plot_allapert.py
-cp *.png ../fig
+mv *.png ../fig
+rm LHC*
+rm twiss_ip1_b1.tfs
+rm *.png
 
 echo '>> DONE!!'

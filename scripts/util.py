@@ -7,7 +7,7 @@ def get_lines(infile):
     """Extracts the lines of a data file. Used in the get_columns function."""
     for character in open(infile):
         columns = character.strip('\n').split()
-        if columns[0] == '#' or columns[0] == '@' or columns[0] == '*' or columns[0] == '$' or columns[0] == '%':
+        if columns[0] == '#' or columns[0] == '@' or columns[0] == '*' or columns[0] == '$' or columns[0] == '%' or columns[0] == '%1=s':
             continue
         yield columns
 

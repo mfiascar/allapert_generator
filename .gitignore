@@ -40,6 +40,15 @@
 ehthumbs.db
 Thumbs.db
 
-.tex
+# Common LaTeX generated files
+*.tex
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.bib
 
 doc/images
+doc/*.madx
