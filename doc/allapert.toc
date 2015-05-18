@@ -1,8 +1,0 @@
-\select@language {spanish}
-\select@language {english}
-\contentsline {section}{\numberline {1}BeamLossPattern}{1}{section.1}
-\contentsline {section}{\numberline {2}GetAperture}{3}{section.2}
-\contentsline {section}{\numberline {3}New aperture model with HLLHCV1.0 optics}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}With vacuum markers and experimental beampipe}{5}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}With vacuum markers, experimental beampipe and survey}{10}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Without vacuum markers or experimental beampipe}{10}{subsection.3.3}
