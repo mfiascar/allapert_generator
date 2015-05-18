@@ -9,6 +9,9 @@ This repository contains the tools used to generate a new aperture file, as inpu
 - [__lib__](https://github.com/KFubuki/allapert_generator/tree/master/lib): contains the implementation files and the makefile to compile BeamLossPattern or GetAperture.
 - [__scripts__](https://github.com/KFubuki/allapert_generator/tree/master/scripts): contains the data treatment and plotting Python scripts.
 
+## How it works
+[alt text](https://raw.githubusercontent.com/KFubuki/allapert_generator/master/flow.png)
 
 __Remark 1__: if you don't have access to AFS, you won't be able to use the files needed to run the MAD-X script.
+
 __Remark 2__: to change the plotting parameters (limits, name of elements plotted, legends, name of file), change the [__plot_allapert.py__](https://github.com/KFubuki/allapert_generator/blob/master/scripts/plot_allapert.py) script in the [__scripts__](https://github.com/KFubuki/allapert_generator/tree/master/scripts) folder.
