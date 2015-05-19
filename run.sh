@@ -36,14 +36,14 @@ then
 fi
 
 echo ''
-cd data/input/GetAperture
+cd data/allapert_old
 ls -l
 
 echo ''
 read -r -p '>> Which one? > ' file
 
-cp $file ../../results/GetAperture
-cd ../../results/GetAperture
+cp $file ../results/GetAperture
+cd ../results/GetAperture
 ./GetAperture $file
 mv LHCAperture.dat LHCAperture_old.dat
 rm $file

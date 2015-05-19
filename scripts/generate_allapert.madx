@@ -95,13 +95,14 @@ call, file = "tkit/Beam.madx";
 use, sequence = lhcb1;
 select, flag = twiss, clear;
 select, flag = twiss,
-  column = name, keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
+  column = keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
 twiss, table = twiss, file = "twiss_ip1_b1.tfs";
 
-exec,mk_irtwiss(1,b1)
+// exec,mk_irtwiss(1,b1)
 
 // select, flag = aperture, clear;
-// select, flag = aperture, column = keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
+// select, flag = aperture, 
+//   column = keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
 // aperture, file = "allapert_twiss.b1";
 
 stop;
