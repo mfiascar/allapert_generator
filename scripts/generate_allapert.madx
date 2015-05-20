@@ -100,10 +100,11 @@ twiss, table = twiss, file = "twiss_ip1_b1.tfs";
 
 // exec,mk_irtwiss(1,b1)
 
-// select, flag = aperture, clear;
-// select, flag = aperture, 
-//   column = keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
-// aperture, file = "allapert_twiss.b1";
+system, "cp hl/aperture/offset.ip*b*.tfs ."; 
+select, flag = aperture, clear;
+select, flag = aperture, 
+  column = keyword, name, parent, s, l, aper_1, aper_2, aper_3, aper_4;
+aperture, offsetelem = "./offset.ip1.b1.tfs", file = "aperture_ip1_b1.tfs";
 
 stop;
 

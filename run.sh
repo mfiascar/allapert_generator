@@ -13,11 +13,11 @@ rm *.madx
 
 cd ../edit_twiss
 rm *
-cp ../madx/twiss_ip1_b1.tfs .
+cp ../madx/aperture_ip1_b1.tfs .
 cp ../../../scripts/edit_twiss.py .
 python edit_twiss.py
 rm *.py
-rm twiss_ip1_b1.tfs
+rm aperture_ip1_b1.tfs
 
 cd ../GetAperture
 cp ../edit_twiss/allapert_final.b1 .

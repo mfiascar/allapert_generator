@@ -1,6 +1,6 @@
 import re
 
-with open('twiss_ip1_b1.tfs', 'r') as infile:
+with open('aperture_ip1_b1.tfs', 'r') as infile:
     with open('allapert_final.b1', 'w') as outfile:
         line = infile.readlines()
         for item in line:
@@ -9,7 +9,7 @@ with open('twiss_ip1_b1.tfs', 'r') as infile:
     outfile.close()
 infile.close()
 
-with open('twiss_ip1_b1.tfs', 'r') as infile:
+with open('aperture_ip1_b1.tfs', 'r') as infile:
     with open('allapert_final.b1', 'a') as outfile:
         counter = 0
         for character in infile:
@@ -27,6 +27,15 @@ with open('twiss_ip1_b1.tfs', 'r') as infile:
                 # Transform RACETRACK
                 elif float(columns[5]) == 0 and float(columns[6]) != 0 and float(columns[7]) != 0 and float(columns[8]) == 0:
                     outfile.write('%20s %-17s %19s %23f %18f %15f %18f %18f %18f \n' % (columns[0], columns[1], columns[2], float(columns[3]), float(columns[4]), float(columns[6]), float(columns[6]), float(columns[7]), float(columns[7])))
+                # Transform RECTELLIPSE
+                elif float(columns[5]) == 0 and float(columns[6]) != 0 and float(columns[7]) != 0 and float(columns[8]) != 0:
+                    outfile.write('%20s %-17s %19s %23f %18f %15f %18f %18f %18f \n' % (columns[0], columns[1], columns[2], float(columns[3]), float(columns[4]), float(columns[6]), float(columns[6]), float(columns[7]), float(columns[8])))
+                elif float(columns[5]) != 0 and float(columns[6]) == 0 and float(columns[7]) != 0 and float(columns[8]) != 0:
+                    outfile.write('%20s %-17s %19s %23f %18f %15f %18f %18f %18f \n' % (columns[0], columns[1], columns[2], float(columns[3]), float(columns[4]), float(columns[5]), float(columns[5]), float(columns[7]), float(columns[8])))
+                elif float(columns[5]) != 0 and float(columns[6]) != 0 and float(columns[7]) == 0 and float(columns[8]) != 0:
+                    outfile.write('%20s %-17s %19s %23f %18f %15f %18f %18f %18f \n' % (columns[0], columns[1], columns[2], float(columns[3]), float(columns[4]), float(columns[5]), float(columns[6]), float(columns[8]), float(columns[8])))
+                elif float(columns[5]) != 0 and float(columns[6]) != 0 and float(columns[7]) != 0 and float(columns[8]) == 0:
+                    outfile.write('%20s %-17s %19s %23f %18f %15f %18f %18f %18f \n' % (columns[0], columns[1], columns[2], float(columns[3]), float(columns[4]), float(columns[5]), float(columns[6]), float(columns[7]), float(columns[7])))
                 else:
                     outfile.write('%20s %-17s %19s %23f %18f %15f %18f %18f %18f \n' % (columns[0], columns[1], columns[2], float(columns[3]), float(columns[4]), float(columns[5]), float(columns[6]), float(columns[7]), float(columns[8])))
     outfile.close()
