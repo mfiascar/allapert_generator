@@ -102,3 +102,26 @@ def get_element(infile, column_name, column_position, regex, text_height):
                 new_position.append(e2)
     return new_name, new_position, text_height
 
+def get_range(infileName, start, end):
+    
+    infile = open(infileName, 'r') 
+    iline = infile.readlines()
+    s_start = -1.
+    s_end = -1.
+    found = 0
+
+    for item in iline:
+        if item[0] == '@' or item[0] == '$' or item[0] == '*':
+            continue
+        columns = item.split()
+        if start in columns[1]:
+            s_start = float(columns[3])
+            found +=1
+        if end in columns[1]:
+            s_end = float(columns[3])
+            found +=1
+        if found==2 and s_start>=0 and s_end>=0:
+            break
+
+    infile.close()
+    return [s_start,s_end]

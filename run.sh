@@ -8,18 +8,25 @@ fi
 cd data/results/madx
 rm *
 cp ../../../scripts/*.madx .
-madx < *.madx
+madx generate_allapert_thick.madx
+madx generate_allapert.madx
 rm *.madx
 
 cd ../edit_twiss
 rm *
-cp ../madx/twiss_ip1_b1.tfs .
+cp ../madx/*.tfs .
 cp ../../../scripts/edit_twiss.py .
+cp ../../../scripts/writeExtraMarkers.py .
+cp ../../../scripts/insertMarkers.py .
+python writeExtraMarkers.py
+python insertMarkers.py
+mv twiss_ip1_b1_withNewMarkers.tfs twiss_ip1_b1.tfs
 python edit_twiss.py
 rm *.py
-rm twiss_ip1_b1.tfs
+rm *.tfs
 
 cd ../GetAperture
+rm *
 cp ../edit_twiss/allapert_final.b1 .
 ln -s ../../../bin/GetAperture
 ./GetAperture allapert_final.b1
