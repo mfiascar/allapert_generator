@@ -23,7 +23,7 @@ python insertMarkers.py
 mv twiss_ip1_b1_withNewMarkers.tfs twiss_ip1_b1.tfs
 python edit_twiss.py
 rm *.py
-rm *.tfs
+#rm *.tfs
 
 cd ../GetAperture
 rm *
@@ -50,17 +50,23 @@ echo ''
 read -r -p '>> Which one? > ' file
 
 cp $file ../results/GetAperture
-cd ../results/GetAperture
+cd ../results/GetAperture 
 ./GetAperture $file
 mv LHCAperture.dat LHCAperture_old.dat
 rm $file
 
 cp LHC*  ../../../scripts
 cp ../madx/twiss_ip1_b1.tfs  ../../../scripts
+cp ../edit_twiss/allapert_final.b1 ../../../scripts
 cd  ../../../scripts
 python plot_allapert.py
 mv *.png ../fig
+#if you want to print out the differences and element names
+ln -s ../data/allapert_old/allapert_roderik_for_maria.b1 allapert_roderik_for_maria.b1
+python print_differences.py
+mv differences*.txt ../data/results/GetAperture
 rm LHC*
 rm twiss_ip1_b1.tfs
+rm allapert*
 
 echo '>> DONE!!'

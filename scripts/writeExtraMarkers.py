@@ -18,8 +18,8 @@ for item in iline:
     L = float(columns[4])
     s_start = s -L
     s_end = s
-    outfile.write(' %s \t %s \t %s \t %f \t %f \t %f \t %f \t %f \t %f \n' % (columns[0], columns[1], columns[2], s_start, 0.0, float(columns[5]), float(columns[6]), float(columns[7]), float(columns[8])))
-    outfile.write(' %s \t %s \t %s \t %f \t %f \t %f \t %f \t %f \t %f \n' % (columns[0], columns[1], columns[2], s_end, 0.0, float(columns[5]), float(columns[6]), float(columns[7]), float(columns[8])))
+    outfile.write(' %s \t %s \t %s \t %f \t %f \t %f \t %f \t %f \t %f \n' % (columns[0], columns[1].replace('"','"S.',1), columns[2], s_start, 0.0, float(columns[5]), float(columns[6]), float(columns[7]), float(columns[8])))
+    outfile.write(' %s \t %s \t %s \t %f \t %f \t %f \t %f \t %f \t %f \n' % (columns[0], columns[1].replace('"','"E.',1), columns[2], s_end, 0.0, float(columns[5]), float(columns[6]), float(columns[7]), float(columns[8])))
 outfile.close()
 infile.close()
 

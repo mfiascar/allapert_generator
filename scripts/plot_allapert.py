@@ -112,7 +112,7 @@ def plot(file_1, file_2, coord, ip, flag): # Here, file_1 is thought as the outp
     # --------------
     plt.savefig('allapert_' + title + '_' + coord + '_new.png', dpi=DPI)
     plt.close()
-
+    
 
 # -----------------
 # Use the function
